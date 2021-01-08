@@ -16,12 +16,23 @@ public final class Logic {
             throws FigureNotFoundException, ImpossibleMoveException, OccupiedCellException {
         int index = findBy(source);
         Cell[] steps = figures[index].way(dest);
-        free(steps);
+        if (!free(steps)) {
+            throw new OccupiedCellException("The path is occupied by another shape");
+        }
         figures[index] = figures[index].copy(dest);
     }
 
-    private boolean free(Cell[] steps) throws OccupiedCellException {
-        return true;
+    private boolean free(Cell[] steps) {
+        boolean rsl = true;
+        for (int index = 0; index < steps.length; index++) {
+            for (int idx = 0; idx < figures.length; idx++) {
+                if (figures[idx].position() == steps[index]) {
+                    rsl = false;
+                    break;
+                }
+            }
+        }
+        return rsl;
     }
 
     public void clean() {
@@ -36,6 +47,6 @@ public final class Logic {
                 return index;
             }
         }
-        throw new FigureNotFoundException();
+        throw new FigureNotFoundException("Index not found for shape");
     }
 }
