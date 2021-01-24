@@ -27,7 +27,7 @@ public class BishopBlackTest {
         Cell ps = Cell.C1;
         Cell psEnd = Cell.G5;
         BishopBlack bishopBlack = new BishopBlack(ps);
-        Cell[] rsl = bishopBlack.way(bishopBlack.copy(psEnd).position());
+        Cell[] rsl = bishopBlack.way(psEnd);
         Cell[] chk = {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
         assertArrayEquals(chk, rsl);
     }
@@ -37,7 +37,7 @@ public class BishopBlackTest {
         Cell ps = Cell.C1;
         Cell psEnd = Cell.G4;
         BishopBlack bishopBlack = new BishopBlack(ps);
-        Cell[] rsl = bishopBlack.way(bishopBlack.copy(psEnd).position());
+        Cell[] rsl = bishopBlack.way(psEnd);
         Cell[] chk = {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
         assertArrayEquals(chk, rsl);
     }
@@ -48,7 +48,7 @@ public class BishopBlackTest {
         Cell psEnd = Cell.G5;
         BishopBlack bishopBlack = new BishopBlack(ps);
         boolean rsl =
-                bishopBlack.isDiagonal(bishopBlack.position(), bishopBlack.copy(psEnd).position());
+                bishopBlack.isDiagonal(bishopBlack.position(), psEnd);
         assertTrue(rsl);
     }
 
